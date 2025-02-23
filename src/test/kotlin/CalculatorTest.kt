@@ -121,17 +121,111 @@ class CalculatorTest {
     }
 
 
-    // TODO: Create your multiplication tests
-    @Test
-    fun testMultiplication() {
-        // Implement your test
+    //Test cases for multiplication operations
+    @Test  //Positive values test
+    @DisplayName("Should return the multiplication of 2 positive numbers")
+    fun testPositiveMultiplication() {
+        // Arrange
+        val a:Double  = 3.0
+        val b:Double = 2.0
+        // Act
+        val result:Double  = calculator.multiply(a, b)
+        // Assert
+        assertEquals(6.0, result, "3.0 * 2.0 should equal 6.0")
     }
 
-    // TODO: Create your division tests
-    @Test
-    fun testDivision() {
-        // Implement your test
+    @Test //Negative values test
+    @DisplayName("Should return the multiplication of 2 negative numbers")
+    fun testNegativeMultiplication() {
+        // Arrange
+        val a:Double  = -3.0
+        val b:Double  = -2.0
+        // Act
+        val result:Double  = calculator.multiply(a, b)
+        // Assert
+        assertEquals(6.0, result, "-3.0 * -2.0 should equal 6.0")
     }
+
+
+    @Test //Multiplication with zero
+    @DisplayName("Should return the multiplication of a negative number and zero")
+    fun testZeroMultiplication() {
+        // Arrange
+        val a:Double = -3.0
+        val b:Double  = 0.0
+        // Act
+        val result:Double  = calculator.multiply(a, b)
+        // Assert
+        assertEquals(0.0, result, "-3.0 * 0.0 should equal 0.0")
+    }
+
+    @Test //Multiplication with edge values
+    @DisplayName("Should return the sum of 2 edge values")
+    fun testEdgeValuesMultiplication() {
+        // Arrange
+        val a:Double =  99999.0
+        val b:Double  = 0.000000002
+        // Act
+        val result:Double  = calculator.multiply(a, b)
+        val expected:Double = 0.000199998
+        val tolerance:Double =  0.000000001
+        // Assert
+        assertEquals(expected, result,tolerance, "99999.0  * 0.000000002 should equal 0.000199998")
+    }
+
+
+    //Test cases for division operations
+    @Test  //Positive values test
+    @DisplayName("Should return the sum of 2 positive numbers")
+    fun testPositiveDivision() {
+        // Arrange
+        val a:Double  = 3.0
+        val b:Double = 2.0
+        // Act
+        val result:Double  = calculator.divide(a, b)
+        // Assert
+        assertEquals(5.0, result, "3.0 + 2.0 should equal 5.0")
+    }
+
+    @Test //Negative values test
+    @DisplayName("Should return the sum of 2 negative numbers")
+    fun testNegativeDivision() {
+        // Arrange
+        val a:Double  = -3.0
+        val b:Double  = -2.0
+        // Act
+        val result:Double  = calculator.divide(a, b)
+        // Assert
+        assertEquals(-5.0, result, "-3.0 + -2.0 should equal -5.0")
+    }
+
+
+    @Test //Division with zero
+    @DisplayName("Should return the sum of a negative number and zero")
+    fun testZeroDivision() {
+        // Arrange
+        val a:Double = -3.0
+        val b:Double  = 0.0
+        // Act
+        val result:Double  = calculator.divide(a, b)
+        // Assert
+        assertEquals(-3.0, result, "-3.0 + 0.0 should equal -3.0")
+    }
+
+    @Test //Division with edge values
+    @DisplayName("Should return the sum of 2 edge values")
+    fun testEdgeValuesDivision() {
+        // Arrange
+        val a:Double =  999999999999.0
+        val b:Double  = 0.000000002
+        // Act
+        val result:Double  = calculator.divide(a, b)
+        val expected:Double = 999999999999.000000002
+        val tolerance:Double =  0.000000001
+        // Assert
+        assertEquals(expected, result,tolerance, "999999999999.0 +0.000000002 should equal 999999999999.000000002")
+    }
+
 
     // TODO: Create error case tests
     @Test
