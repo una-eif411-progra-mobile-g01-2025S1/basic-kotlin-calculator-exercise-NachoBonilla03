@@ -3,6 +3,7 @@ package org.example.calculator
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 
@@ -176,54 +177,56 @@ class CalculatorTest {
 
     //Test cases for division operations
     @Test  //Positive values test
-    @DisplayName("Should return the sum of 2 positive numbers")
+    @DisplayName("Should return the division of 2 positive numbers")
     fun testPositiveDivision() {
         // Arrange
-        val a:Double  = 3.0
-        val b:Double = 2.0
+        val a:Double  = 55.0
+        val b:Double = 7.0
         // Act
         val result:Double  = calculator.divide(a, b)
         // Assert
-        assertEquals(5.0, result, "3.0 + 2.0 should equal 5.0")
+        assertEquals(7.857142857142857, result, "55.0/7.0 should equal 7.857142857142857")
     }
 
     @Test //Negative values test
-    @DisplayName("Should return the sum of 2 negative numbers")
+    @DisplayName("Should return the division of 2 negative numbers")
     fun testNegativeDivision() {
         // Arrange
-        val a:Double  = -3.0
+        val a:Double  = -15.0
         val b:Double  = -2.0
         // Act
         val result:Double  = calculator.divide(a, b)
         // Assert
-        assertEquals(-5.0, result, "-3.0 + -2.0 should equal -5.0")
+        assertEquals(7.5, result, "-15.0 / -2.0 should equal 7.5")
     }
 
 
     @Test //Division with zero
-    @DisplayName("Should return the sum of a negative number and zero")
+    @DisplayName("Should return the error case")
     fun testZeroDivision() {
         // Arrange
         val a:Double = -3.0
         val b:Double  = 0.0
         // Act
-        val result:Double  = calculator.divide(a, b)
+        val exception = assertThrows<IllegalArgumentException> {
+            calculator.divide(a, b)
+        }
         // Assert
-        assertEquals(-3.0, result, "-3.0 + 0.0 should equal -3.0")
+        assertEquals("b must be non-zero", exception.message, "Exception message should match expected")
     }
 
     @Test //Division with edge values
-    @DisplayName("Should return the sum of 2 edge values")
+    @DisplayName("Should return the division of 2 edge values")
     fun testEdgeValuesDivision() {
         // Arrange
-        val a:Double =  999999999999.0
-        val b:Double  = 0.000000002
+        val a: Double = 1000000.0
+        val b: Double = -5.75
         // Act
         val result:Double  = calculator.divide(a, b)
-        val expected:Double = 999999999999.000000002
+        val expected:Double = -173913.04347826087
         val tolerance:Double =  0.000000001
         // Assert
-        assertEquals(expected, result,tolerance, "999999999999.0 +0.000000002 should equal 999999999999.000000002")
+        assertEquals(expected, result,tolerance, "1000000.0 /-5.75 should equal -173913.04347826087")
     }
 
 
