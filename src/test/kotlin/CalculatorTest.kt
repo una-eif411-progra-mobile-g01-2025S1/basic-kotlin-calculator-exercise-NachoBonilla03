@@ -1,5 +1,10 @@
 package org.example.calculator
-
+/*
+EIF411 - Diseño y Programación de Aplicaciones Móviles
+Práctica de Laboratorio: Calculadora básica en Kotlin
+Profesor: Maikol Guzmán Alán
+Estudiante: Ignacio Bonilla Rojas
+*/
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -208,7 +213,7 @@ class CalculatorTest {
         val a:Double = -3.0
         val b:Double  = 0.0
         // Act
-        val exception = assertThrows<IllegalArgumentException> {
+        val exception = assertThrows<IllegalArgumentException> { //This case throws an IllegalArgumentException so the value must be casted
             calculator.divide(a, b)
         }
         // Assert
@@ -227,12 +232,5 @@ class CalculatorTest {
         val tolerance:Double =  0.000000001
         // Assert
         assertEquals(expected, result,tolerance, "1000000.0 /-5.75 should equal -173913.04347826087")
-    }
-
-
-    // TODO: Create error case tests
-    @Test
-    fun testErrorCases() {
-        // Implement your test
     }
 }
